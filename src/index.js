@@ -18,7 +18,14 @@ const io = new Server(server, {
   cors: { origin: 'https://chat-frontend-two-omega.vercel.app' }
 })
 
-app.use(cors())
+app.use(cors({
+  origin: 'https://chat-frontend-two-omega.vercel.app',
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  preflightContinue: false,
+  optionsSuccessStatus: 204
+}))
 app.use(express.json())
 app.use('/api/auth', authRoutes)
 
